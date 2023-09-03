@@ -21,7 +21,7 @@ Este repositorio usa el protocolo OAuth 2.0 para la autorizacion de usuarios, el
 - Pagina principal 
 - Login 
 
-🔐**Funcionalidades privadas( _Una vez confirmada la cuenta y haber iniciado sesion_ )**:
+🔐**Funcionalidades privadas**:
 
 
 
@@ -36,10 +36,8 @@ Este repositorio usa el protocolo OAuth 2.0 para la autorizacion de usuarios, el
 <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="JavaScript" />&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node JS" />&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express JS" />&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/OAuth%202.0-badge?style=for-the-badge&logo=auth0&logoColor=%23EB5424&labelColor=black&color=black
-" alt="OAuth 2.0" />&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
-" alt="GitHub" />&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/OAuth%202.0-badge?style=for-the-badge&logo=auth0&logoColor=%23EB5424&labelColor=black&color=black" alt="OAuth 2.0" />&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />&nbsp;&nbsp;
 
 </div>
 
