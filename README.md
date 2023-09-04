@@ -18,12 +18,11 @@ Este repositorio usa el protocolo OAuth 2.0 para la autorizacion de usuarios, el
 
 🔓**Funcionalidades publicas:**
 
-- Pagina principal 
-- Login 
+- Pagina principal
+- Login
+- Home
 
 🔐**Funcionalidades privadas**:
-
-
 
 </div>
 
@@ -38,6 +37,9 @@ Este repositorio usa el protocolo OAuth 2.0 para la autorizacion de usuarios, el
 <img src="https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express JS" />&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/OAuth%202.0-badge?style=for-the-badge&logo=auth0&logoColor=%23EB5424&labelColor=black&color=black" alt="OAuth 2.0" />&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind_CSS" />&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />&nbsp;&nbsp;
 
 </div>
 
@@ -48,13 +50,13 @@ Este repositorio usa el protocolo OAuth 2.0 para la autorizacion de usuarios, el
 
 🎨**Principales tecnologias usadas para el Front-End:**
 
-- **HTML**: Version 5
+- **React**: Version *
+- **Tailwind_CSS**: Version *
+- **Vite**: Version *
 
 💾**Bases de datos**:
 
-
 ☁️**Cloud**:
-
 
 ## 🛠️ Instalacion
 
@@ -62,9 +64,11 @@ Este repositorio usa el protocolo OAuth 2.0 para la autorizacion de usuarios, el
 
 <p align="justify">
 
-Para la instalacion, debe de contar con ```node 18.14.2``` y luego seguir los pasos siguientes.
+Para la instalacion, debe de contar con `node 18.14.2` y luego seguir los pasos siguientes.
 
-📂 Para ejecutar la app:
+La aplicacion esta dividida en 2 proyectos, una API Rest y un Front-End.
+
+📂 Para ejecutar el Back-End debe hacer lo siguiente:
 
 </p>
 
@@ -77,7 +81,7 @@ $ npm run start
 
 <p align="justify">
 
-🔑El back-end requiere las siguientes ```variables de entorno```:
+🔑El back-end requiere las siguientes `variables de entorno`:
 
 </p>
 
@@ -85,6 +89,27 @@ $ npm run start
 PORT=
 CLIENT_ID=
 CLIENT_SECRET=
+```
+
+<p align="justify">
+📂Para ejecutar el Front-End se debe hacer lo siguiente una vez clonado el repositorio:
+</p>
+
+```
+$ cd ../path/to/the/dir/FrontEnd
+$ npm install
+$ npm run dev
+```
+
+<p align="justify">
+
+🔑El front-end requiere las siguientes `variables de entorno`:
+
+</p>
+
+```
+VITE_CLIENT_ID=
+VITE_CLIENT_SECRET=
 ```
 
 <p align="justify">
