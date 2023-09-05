@@ -1,18 +1,24 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthLayout from "./layout/AuthLayout";
-import { PaginaPrincipal } from "./Views/PaginaPrincipal";
-import Home from "./Views/Home";
-import Login from "./Views/Login";
+import { LandingPage } from "./Views/LandingPage";
+import PaginaPrincipal from "./Views/PaginaPrincipal";
+import CrearCuenta from "./Views/CrearCuenta";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AuthLayout></AuthLayout>}>
-            <Route index element={<PaginaPrincipal></PaginaPrincipal>}></Route>
-            <Route path="login" element={<Login></Login>}></Route>
-            <Route path="home" element={<Home></Home>}></Route>
+            <Route index element={<LandingPage></LandingPage>}></Route>
+            <Route
+              path="crear-cuenta"
+              element={<CrearCuenta></CrearCuenta>}
+            ></Route>
+            <Route
+              path="home"
+              element={<PaginaPrincipal></PaginaPrincipal>}
+            ></Route>
           </Route>
         </Routes>
       </BrowserRouter>

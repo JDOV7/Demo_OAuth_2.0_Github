@@ -1,34 +1,23 @@
-const express = require("express");
-const path = require("path");
-// const dateFormat = require("date-format");
+import express, { json } from "express";
+import dotenv from "dotenv";
 const app = express();
-const config = require("./config.js");
-const oauthRouter = require("./oauth");
-// const userRouter = require("./User");
 
-// app.use(express.urlencoded());
-// app.use(express.json({}));
+// app.use("/oauth", oauthRouter);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+dotenv.config();
 
-// const LoggerMiddleware = (req, res, next) => {
-//   console.log(`<------------------------------------------------>`);
-//   console.log(`Logged ${req.url} ${req.method} -- ${new Date()}`);
-//   console.log("--BODY--");
-//   console.log(req.body);
-//   console.log(`<------------------------------------------------>`);
-//   next();
-// };
-// app.use(LoggerMiddleware);
-app.use(express.static("static"));
-
-app.get("/", (req, res) => {
-  console.log("index----------------");
-  res.sendFile(path.join(__dirname, "/static/index.html"));
+app.get("/hola", (req, res) => {
+  return res.status(200).json({
+    status: 200,
+    message: "Hola",
+    data: {},
+  });
 });
 
-app.use("/oauth", oauthRouter);
-
-app.listen(config.PORT, () => {
-  console.log(`Server inciaido port: ${config.PORT}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Servidor Corriendo en el puerto: ${PORT}`);
 });
 
 app.use((req, res, next) => {
