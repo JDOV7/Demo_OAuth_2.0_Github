@@ -10,7 +10,7 @@ const CrearCuenta = () => {
   return (
     <>
       <section className="bg-slate-100 ">
-        <div className="justify-center items-center text-center pt-8">
+        <div className="justify-center items-center text-center pt-2">
           <h1 className="text-4xl text-purple-700 font-mono font-semibold">
             OAuth 2.0
             <span className="text-3xl text-gray-900 font-sans text-center">
@@ -22,8 +22,8 @@ const CrearCuenta = () => {
             </span>{" "}
           </h1>
         </div>
-        <div className="justify-center items-center text-center pt-12 pb-5">
-          <h1 className="text-4xl font-sans font-bold">Crear Cuenta</h1>
+        <div className="justify-center items-center text-center pt-6 pb-5">
+          <h1 className="text-3xl font-sans font-bold">Crear Cuenta</h1>
         </div>
         <main className="flex justify-center items-center  ">
           <div className=" shadow-2xl px-10 flex justify-start items-start rounded-3xl bg-slate-400 ">

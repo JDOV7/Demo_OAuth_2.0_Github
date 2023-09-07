@@ -1,5 +1,9 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
+import cors from "cors";
+import oauthRouter from "./oauth/auth_router.js";
+import db from "./Config/db.js";
+
 const app = express();
 
 // app.use("/oauth", oauthRouter);
@@ -7,21 +11,42 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 dotenv.config();
 
-app.get("/hola", (req, res) => {
-  return res.status(200).json({
-    status: 200,
-    message: "Hola",
-    data: {},
-  });
-});
+try {
+  await db.authenticate();
+  db.sync();
+  console.log("conexion correcta a la db");
+} catch (error) {
+  console.log(error);
+}
+
+const dominiosPermitidos = [process.env.FRONTEND_URL, "https://localhost:3001"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    callback(null, true);
+    // if (dominiosPermitidos.indexOf(origin) !== -1) {
+
+    //   callback(null, true);
+    // } else {
+    //   callback(new Error("No permitdo por CORS"));
+    // }
+  },
+};
+
+app.use(cors(corsOptions));
+
+app.use("/oauth", oauthRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Servidor Corriendo en el puerto: ${PORT}`);
+  console.log(`Servidor Corriendo en el puerto: ${process.env.PORT}`);
 });
 
 app.use((req, res, next) => {
-  res.status(400).send("Recurso no encontrado");
+  res.status(400).json({
+    status: 400,
+    message: "Recurso no encontrado",
+    data: {},
+  });
 });
 
 /***

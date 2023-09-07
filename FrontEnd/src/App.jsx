@@ -4,6 +4,7 @@ import AuthLayout from "./layout/AuthLayout";
 import { LandingPage } from "./Views/LandingPage";
 import PaginaPrincipal from "./Views/PaginaPrincipal";
 import CrearCuenta from "./Views/CrearCuenta";
+import NuevoProducto from "./Views/NuevoProducto";
 function App() {
   return (
     <>
@@ -18,6 +19,10 @@ function App() {
             <Route
               path="home"
               element={<PaginaPrincipal></PaginaPrincipal>}
+            ></Route>
+            <Route
+              path="producto"
+              element={<NuevoProducto></NuevoProducto>}
             ></Route>
           </Route>
         </Routes>

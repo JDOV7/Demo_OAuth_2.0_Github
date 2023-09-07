@@ -1,9 +1,10 @@
-const { response } = require("express");
-const express = require("express");
-const axios = require("axios");
-const config = require("../config.js");
+import express from "express";
+import axios from "axios";
 const router = express.Router();
-const oauthCtrl = require("./auth_controller.js");
+import { validarCuenta } from "./auth_controller.js";
+// const oauthCtrl = require("./auth_controller.js");
+
+router.post("/verificar-cuenta", validarCuenta);
 
 router.get("/login", (req, res) => {
   const scope = "user:email";
@@ -18,6 +19,7 @@ router.get("/login", (req, res) => {
 router.post("/obtener-perfil", async (req, res) => {
   try {
     const access_token = req.headers.authorization;
+    console.log(access_token);
     const datosUser = await axios({
       method: "get",
       url: `https://api.github.com/user`,
@@ -34,6 +36,7 @@ router.post("/obtener-perfil", async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       status: 500,
       message: "Error en el servidor",
@@ -164,4 +167,4 @@ router.get("/callback", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

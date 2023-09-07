@@ -1,28 +1,82 @@
-const axios = require("axios");
-const config = require("../../config.js");
+import axios from "axios";
 
-function getGithubAccessToken(code, done) {
-  const body = {
-    client_id: config.CLIENT_ID,
-    client_secret: config.CLIENT_SECRET,
-    code,
-  };
-  console.log(body);
-  const opts = {
+const validarCuentaServicio = async (datos = {}) => {
+  const resA = await axios({
+    method: "post",
+    url: `https://github.com/login/oauth/access_token?client_id=${datos.client_id}&client_secret=${datos.client_secret}&code=${datos.code}`,
     headers: {
       accept: "application/json",
     },
+  });
+
+  // console.log(resA);
+
+  if (resA.data?.error) {
+    return {
+      status: 400,
+      message: "Error al verificar su cuenta",
+      data: {},
+    };
+  }
+
+  return {
+    status: 200,
+    message: "Cuenta verificada correctamente",
+    data: { dataGitHub: resA.data },
   };
+};
 
-  axios
-    .post("https://github.com/login/outh/access_token?", body, opts)
-    .then((response) => response.data.access_token)
-    .then((token) => {
-      done(null, token);
-    })
-    .cathc((err) => {
-      done({ err: err.message });
+const obtenerDatosCuentaServicio = async (access_token = "") => {
+  try {
+    const datosUser = await axios({
+      method: "get",
+      url: `https://api.github.com/user`,
+      headers: {
+        Authorization: "token " + access_token,
+      },
     });
-}
+    // console.log(datosUser);
+    return {
+      status: 200,
+      message: "Info user",
+      data: {
+        perfil: datosUser.data,
+      },
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      message: "Error en el servidor",
+      data: {},
+    };
+  }
+};
 
-module.export = getGithubAccessToken;
+const obtenerEmailCuentaServicio = async (access_token = "") => {
+  try {
+    const datosUser = await axios({
+      method: "get",
+      url: `https://api.github.com/user/emails`,
+      headers: {
+        Authorization: "token " + access_token,
+      },
+    });
+    // console.log(datosUser);
+    return {
+      status: 200,
+      message: "Email user",
+      data: {
+        perfil: datosUser.data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 500,
+      message: "Error en el servidor",
+      data: {},
+    };
+  }
+};
+
+export { validarCuentaServicio, obtenerDatosCuentaServicio,obtenerEmailCuentaServicio };
