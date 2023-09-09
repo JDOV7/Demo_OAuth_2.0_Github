@@ -1,4 +1,6 @@
 import axios from "axios";
+import jwt from "jsonwebtoken";
+import { Usuarios, Productos } from "../Models/index.js";
 
 const validarCuentaServicio = async (datos = {}) => {
   const resA = await axios({
@@ -79,4 +81,63 @@ const obtenerEmailCuentaServicio = async (access_token = "") => {
   }
 };
 
-export { validarCuentaServicio, obtenerDatosCuentaServicio,obtenerEmailCuentaServicio };
+const obtenerPermiso = async (token = "") => {
+  try {
+    const decodificando = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decodificando) {
+      throw new Error("");
+    }
+    if (!decodificando?.IdGitHub) {
+      throw new Error("");
+    }
+
+    const { IdGitHub } = decodificando;
+
+    const buscarUsuario = await Usuarios.findOne({
+      where: {
+        IdGitHub,
+      },
+    });
+
+    if (!buscarUsuario) {
+      throw new Error("");
+    }
+
+    return {
+      status: 200,
+      message: "Permiso conseguido",
+      data: {},
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      message: "Error en el servidor",
+      data: {},
+    };
+  }
+};
+
+const crearProducto = async (datos = {}) => {
+  try {
+    const crearProducto = await Productos.create(datos);
+    return {
+      status: 201,
+      message: "Producto creado",
+      data: { crearProducto },
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      message: "Error en el servidor",
+      data: {},
+    };
+  }
+};
+
+export {
+  validarCuentaServicio,
+  obtenerDatosCuentaServicio,
+  obtenerEmailCuentaServicio,
+  obtenerPermiso,
+  crearProducto,
+};

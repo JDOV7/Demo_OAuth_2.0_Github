@@ -20,42 +20,59 @@ const PaginaPrincipal = () => {
     console.log(searchParams.get("code"));
     const obtenerLibros = async () => {
       try {
-        const url = `oauth/verificar-cuenta`;
-        console.log(url);
-        const { data } = await clienteAxios.post(url, {
-          code: searchParams.get("code"),
-        });
-        console.log(data);
-        console.log(data.status);
-
-        if (!data || !statusAceptados.includes(data?.status)) {
-          // navigate("/crear-cuenta");
-          setCode(500);
-          setInfoCuenta({});
-          setProductos([]);
-        } else if (data?.status == 200) {
-          setCode(200);
-          setInfoCuenta({ login: data?.data?.usuario?.login });
-          setProductos(data?.data?.productos);
-          console.log(data?.data?.token);
-          console.log(data?.data?.usuario?.login);
-
-          window.localStorage.setItem(
-            "tokenJWT-Demo-OAuth2.0",
-            data?.data?.token
-          );
+        const token = window.localStorage.getItem("tokenJWT-Demo-OAuth2.0");
+        console.log(token);
+        if (!token) {
+          throw new Error("Token no existe ");
         }
+        const config = {
+          headers: { Authorization: token },
+        };
+        const url = `oauth/permiso`;
+        console.log(url);
+        const { data } = await clienteAxios.post(url, {}, config);
+        console.log(data);
       } catch (error) {
         console.log(error);
-        navigate("/crear-cuenta");
+
+        try {
+          const url = `oauth/verificar-cuenta`;
+          console.log(url);
+          const { data } = await clienteAxios.post(url, {
+            code: searchParams.get("code"),
+          });
+          console.log(data);
+          console.log(data.status);
+
+          if (!data || !statusAceptados.includes(data?.status)) {
+            // navigate("/crear-cuenta");
+            setCode(500);
+            setInfoCuenta({});
+            setProductos([]);
+          } else if (data?.status == 200) {
+            setCode(200);
+            setInfoCuenta({ login: data?.data?.usuario?.login });
+            setProductos(data?.data?.productos);
+            console.log(data?.data?.token);
+            console.log(data?.data?.usuario?.login);
+
+            window.localStorage.setItem(
+              "tokenJWT-Demo-OAuth2.0",
+              data?.data?.token
+            );
+          }
+        } catch (error) {
+          console.log(error);
+          navigate("/crear-cuenta");
+        }
       }
     };
     obtenerLibros();
   }, []);
 
-  if (!statusAceptados.includes(code)) {
-    return navigate("/crear-cuenta");
-  }
+  // if (!statusAceptados.includes(code)) {
+  //   return navigate("/crear-cuenta");
+  // }
 
   return (
     <>

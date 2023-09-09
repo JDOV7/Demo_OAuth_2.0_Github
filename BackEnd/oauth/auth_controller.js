@@ -2,6 +2,8 @@ import {
   validarCuentaServicio,
   obtenerDatosCuentaServicio,
   obtenerEmailCuentaServicio,
+  obtenerPermiso,
+  crearProducto,
 } from "./auth_service.js";
 import {
   crearUsuarioServicio,
@@ -75,4 +77,32 @@ const obtenerDatosCuenta = async (req, res) => {
   return res.status(400).json(resV);
 };
 
-export { validarCuenta, obtenerDatosCuenta };
+const obtenerPermisoController = async (req, res) => {
+  try {
+    const obtenerPerfilRes = await obtenerPermiso(req.headers.authorization);
+    return res.status(obtenerPerfilRes.status).json(obtenerPerfilRes);
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      message: "Error en el servidor",
+    });
+  }
+};
+
+const crearProductoController = async (req, res) => {
+  try {
+    const crearProductosRes = await crearProducto(req.body);
+    return res.status(crearProductosRes.status).json(crearProductosRes);
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      message: "Error en el servidor",
+    });
+  }
+};
+export {
+  validarCuenta,
+  obtenerDatosCuenta,
+  obtenerPermisoController,
+  crearProductoController,
+};

@@ -1,10 +1,19 @@
 import express from "express";
 import axios from "axios";
 const router = express.Router();
-import { validarCuenta } from "./auth_controller.js";
+import {
+  validarCuenta,
+  obtenerPermisoController,
+  crearProductoController,
+} from "./auth_controller.js";
+import ValidarJWT from "../Middleware/ValidarJWT.js";
 // const oauthCtrl = require("./auth_controller.js");
 
 router.post("/verificar-cuenta", validarCuenta);
+
+router.post("/permiso", obtenerPermisoController);
+
+router.post("/producto", ValidarJWT, crearProductoController);
 
 router.get("/login", (req, res) => {
   const scope = "user:email";

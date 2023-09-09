@@ -19,10 +19,13 @@ Este repositorio usa el protocolo OAuth 2.0 para la autorizacion de usuarios, el
 🔓**Funcionalidades publicas:**
 
 - Pagina principal
-- Login
-- Home
+- Crear Cuenta
+
 
 🔐**Funcionalidades privadas**:
+
+- Home, se obtienen todos los productos creados
+- Crear producto, muestra un formulario para crear un producto
 
 </div>
 
