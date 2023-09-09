@@ -2,6 +2,7 @@ import express, { json } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import oauthRouter from "./oauth/auth_router.js";
+import productosRouter from "./Produtos/index.js";
 import db from "./Config/db.js";
 
 const app = express();
@@ -35,6 +36,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/oauth", oauthRouter);
+app.use("/productos", productosRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

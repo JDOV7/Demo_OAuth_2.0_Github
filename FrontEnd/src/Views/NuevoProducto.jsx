@@ -63,11 +63,13 @@ const NuevoProducto = () => {
     <div>
       <div className="p-4">
         <h1 className="text-3xl font-bold text-center ">Creando Producto</h1>
+      </div>
+      <div className="text-center flex justify-center items-center">
         <Link
           to={"/home"}
-          className="bg-gray-300 hover:bg-gray-400 py-2  font-semibold  px-4 mb-4 rounded-2xl flex items-center text-black"
+          className="bg-gray-300 hover:bg-gray-400 py-2  font-semibold  px-4 mb-4 rounded-2xl flex items-center text-black text-center"
         >
-          <span>Nuevo Producto</span>
+          <span>Ver Productos</span>
         </Link>
       </div>
       <div>

@@ -32,6 +32,13 @@ const PaginaPrincipal = () => {
         console.log(url);
         const { data } = await clienteAxios.post(url, {}, config);
         console.log(data);
+
+        const obtenerProductosURL = "productos/productos";
+        const { data: produtosR } = await clienteAxios.get(
+          obtenerProductosURL,
+          config
+        );
+        setProductos(produtosR?.data?.productos);
       } catch (error) {
         console.log(error);
 
